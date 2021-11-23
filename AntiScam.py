@@ -31,6 +31,5 @@ async def AntiScam(message, bot, whitelist, muted_role, verified_role, logs_chan
         await last_message.delete()
         await message.author.add_roles(muted)
         await message.author.remove_roles(verified)
-        channel = bot.get_channel(logs_channel)
-        await channel.send(f'USUARIO MUTEADO: {message_content}')
+        await logs_channel.send(f'USUARIO MUTEADO: {message_content}')
     await bot.process_commands(message)
