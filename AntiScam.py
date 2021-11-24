@@ -26,7 +26,7 @@ async def AntiScam(
     # AntiScam-System
     if message_content == last_message_content and \
        message.content != '' and \
-       message.author.id not in whitelist:
+       message.author.id not in white_list:
 
         spam_counter += 1
         await message.delete()
@@ -35,11 +35,11 @@ async def AntiScam(
         last_message_content = message_content
         spam_counter = 0
 
-    if len(message.mentions) > 10 and message.author.id not in whitelist:
+    if len(message.mentions) > 10 and message.author.id not in white_list:
         await message.delete()
         spam_counter = 2
 
-    if spam_counter > 1 and message.author.id not in whitelist:
+    if spam_counter > 1 and message.author.id not in white_list:
         spam_counter = 0
         muted = discord.utils.get(message.author.guild.roles, name=muted_role)
         verified = discord.utils.get(message.author.guild.roles, name=verified_role)
